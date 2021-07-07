@@ -10,9 +10,13 @@ const Posts = require('../posts/posts-model');
 
 const { validateUserId, validateUser, validatePost } = require('../middleware/middleware');
 
-router.get('/', (req, res) => {
+router.get('/', (req, res, next) => {
   // RETURN AN ARRAY WITH ALL THE USERS
-  console.log(`great success`)
+  Users.get()
+  .then(users => {
+    res.status(200).json(users)
+  })
+  .catch(next)
 });
 
 router.get('/:id', validateUserId, (req, res) => {

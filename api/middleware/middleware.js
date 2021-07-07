@@ -22,10 +22,25 @@ function validatePost(req, res, next) {
   next()
 }
 
+function notFound(req, res, next) {
+  res.status(404).json({
+    message: 'not found, sorry!'
+  })
+}
+
+function errorHandling(err, req, res, next) {
+  const status = err.status || 500
+  res.status(status).json({
+    message: err.message
+  })
+}
+
 // do not forget to expose these functions to other modules
 module.exports = {
   logger,
   validateUserId,
   validateUser,
-  validatePost
+  validatePost,
+  notFound,
+  errorHandling
 }
