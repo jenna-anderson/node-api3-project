@@ -14,14 +14,20 @@ router.get('/', (req, res, next) => {
   // RETURN AN ARRAY WITH ALL THE USERS
   Users.get()
   .then(users => {
-    res.status(200).json(users)
+    res.status(200).json(users);
   })
   .catch(next)
 });
 
-router.get('/:id', validateUserId, (req, res) => {
+router.get('/:id', validateUserId, (req, res, next) => {
   // RETURN THE USER OBJECT
   // this needs a middleware to verify user id
+  const { id } = req.params;
+  Users.getById(id)
+  .then(user => {
+    res.status(200).json(user);
+  })
+  .catch(next)
 });
 
 router.post('/', validateUser, (req, res) => {
