@@ -31,8 +31,9 @@ function validateUser(req, res, next) {
     res.status(400).json({
       message: "missing required name field"
     })
+  } else {
+    next()
   }
-  next()
 }
 
 function validatePost(req, res, next) {
