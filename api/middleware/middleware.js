@@ -1,6 +1,6 @@
 function logger(req, res, next) {
   // DO YOUR MAGIC
-  console.log('very nice')
+  console.log(`METHOD: ${req.method}, URL: ${req.baseUrl}, TIMESTAMP: ${new Date(Date.now())}`)
   next()
 }
 
