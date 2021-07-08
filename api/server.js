@@ -1,3 +1,5 @@
+const cors = require('cors')
+const path = require('path')
 const express = require('express');
 
 const server = express();
@@ -6,6 +8,8 @@ const server = express();
 
 // global middlewares and the user's router need to be connected here
 server.use(express.json());
+server.use(cors());
+server.use(express.static(path.join(__dirname, 'api/')))
 
 const usersRouter = require('./users/users-router');
 const { logger, notFound, errorHandling } = require('./middleware/middleware');
